@@ -1,6 +1,7 @@
-import Expenses from "./components/Expenses"; //look for expense component in component folder
+import Expenses from "./components/Expenses/Expenses"; //look for expense component in component folder
+import React from "react";
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: "e1",
@@ -27,12 +28,19 @@ function App() {
       date: new Date(2022, 5, 12),
     },
   ];
+  // code that is happening 'under the hood'
+  // return React.createElement(
+  //   "div",
+  //   {},
+  //   React.createElement("h2", {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <h1>Expense Tracker</h1>
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
