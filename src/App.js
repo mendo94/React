@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses"; //look for expense component in component folder
+import NewExpense from "./components/NewExpense/NewExpense";
 import React from "react";
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
   // );
   return (
     <div>
-      <h1>Expense Tracker</h1>
+      <NewExpense />
       <Expenses items={expenses} />
     </div>
   );
