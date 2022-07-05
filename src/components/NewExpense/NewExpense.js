@@ -4,6 +4,7 @@ import "./NewExpense.scss";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
+
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
@@ -20,6 +21,7 @@ const NewExpense = (props) => {
   const stopEditingHandler = () => {
     setIsEditing(false);
   };
+
   return (
     <div className='new-expense'>
       {!isEditing && (
