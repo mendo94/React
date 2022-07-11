@@ -1,0 +1,19 @@
+.navbar {
+  background-color: rgb(38, 136, 201);
+  display: flex;
+}
+
+.text-color {
+  color: white;
+}
+
+.menu {
+  display: flex;
+  margin-left: 3em;
+  list-style: none;
+}
+
+li {
+  padding-left: 3em;
+  font-size: 2em;
+}
