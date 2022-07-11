@@ -3,9 +3,9 @@
 ## Site Preview:
 
 <div id="site-preview" align="center">
-  <img src="/img/tracker1.png" width="100%"/>
+  <img src="ExpenseTracker/img/tracker1.png" width="100%"/>
 </div>
 
 ## Description
 
-<p>Using create react app, build a component driven UI Expense Tracker with jsx syntax. </p>
+<p>Component driven UI Expense Tracker with jsx syntax. User is able to add new items to the tracker with the prices and dates of each item.</p>
