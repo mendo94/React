@@ -3,7 +3,7 @@
 ## Site Preview:
 
 <div id="site-preview" align="center">
-  <img src="/images/bookbarn.png" width="100%"/>
+  <img src="/public/images/bookbarn.png" width="100%"/>
 </div>
 
 ## Description
