@@ -1,0 +1,12 @@
+.bookList {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 10%;
+  color: white;
+}
+
+img {
+  height: 50%;
+}

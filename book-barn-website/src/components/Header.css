@@ -1,0 +1,21 @@
+.mainMenu {
+  display: flex;
+  background-color: rgb(94, 72, 72);
+  color: aliceblue;
+  width: 100%;
+  height: 6em;
+}
+.brand {
+  font-size: 4em;
+  font-weight: bold;
+  padding: 0 1em;
+}
+
+.subMenu {
+  display: flex;
+  list-style: none;
+}
+
+.menuOptions {
+  padding: 2em;
+}
