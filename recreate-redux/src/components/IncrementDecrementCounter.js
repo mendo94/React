@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import * as actionTypes from "../store/actions/actionTypes";
 
 function IncrementDecrementCounter(props) {
   return (
@@ -12,7 +13,7 @@ function IncrementDecrementCounter(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrement: () => dispatch({ type: "INCREMENT" }),
+    onIncrement: () => dispatch({ type: actionTypes.INCREMENT }),
     onDecrement: () =>
       dispatch({
         type: "DECREMENT",
