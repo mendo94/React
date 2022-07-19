@@ -1,10 +1,13 @@
+import * as actionTypes from "./actions/actionTypes";
+
 const initialState = {
   counter: 0,
   isAuthenticated: false,
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type == "INCREMENT") {
+  if (action.type == actionTypes.INCREMENT) {
+    //DOWNLOAD THE code implement decrement using action types
     return {
       ...state,
       counter: state.counter + 1,
