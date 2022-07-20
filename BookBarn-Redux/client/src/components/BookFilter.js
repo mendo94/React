@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 function BookFilter() {
   return (
     <div>
+      <br></br>
       <header>
-        Filter By Genre
-        <select name="" id=""></select>
+        <h2>Filter By Genre</h2>
+        <input type="text" />
       </header>
     </div>
   );

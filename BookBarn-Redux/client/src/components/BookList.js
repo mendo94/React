@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import BookFilter from "./BookFilter";
 import * as actionCreators from "../store/creators/actionCreators";
 import { connect } from "react-redux";
+import "./BookCart.css";
 
 function BookList(props) {
   const books = props.books;
