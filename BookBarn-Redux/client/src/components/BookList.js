@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import BookFilter from "./BookFilter";
 import * as actionCreators from "../store/creators/actionCreators";
 import { connect } from "react-redux";
+import "./BookCart.css";
 
 function BookList(props) {
   const books = props.books;
@@ -32,6 +34,7 @@ function BookList(props) {
   };
 
   const bookItems = books.map((book) => {
+    const filteredGenres = book.genre.filter(book.genre);
     return (
       <div
         className="card text-dark"
@@ -69,13 +72,19 @@ function BookList(props) {
       </div>
     );
   });
-  return <ul style={{ display: "flex" }}>{bookItems}</ul>;
+
+  return (
+    <div>
+      {/* <BookFilter /> */}
+      <ul style={{ display: "flex", flexWrap: "wrap" }}>{bookItems}</ul>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books,
-    userId: state.userId,
+    books: state.bookReducer.books,
+    userId: state.userReducer.userId,
   };
 };
 

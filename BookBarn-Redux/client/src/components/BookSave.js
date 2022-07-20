@@ -2,23 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function BookSave() {
+import * as actionCreators from "../store/creators/actionCreators";
+import { connect } from "react-redux";
+
+function BookSave(props) {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
-  const [apiKey, setApiKey] = useState(
-    "AIzaSyDWZchMfcTgZ6tz4opBD6_myPdDvStJegg"
-  );
   const [favorite, setFavorite] = useState([]);
-  const userId = localStorage.getItem("userId");
+  const userId = props.userId;
+  // const userId = localStorage.getItem("userId");
+  // const books = props.books;
+  // const favorites = props.cart;
   const Navigate = useNavigate();
+  const apiKey = "AIzaSyDWZchMfcTgZ6tz4opBD6_myPdDvStJegg";
 
-  const handleTextChange = (e) => {
-    setBook({
-      ...book,
-      [e.target.name]: e.target.value,
-      userId: userId,
-    });
-  };
   const handleFavorites = (e) => {
     setFavorite({
       ...favorite,
@@ -40,6 +37,7 @@ function BookSave() {
     });
     const response = await addBooks.json();
     if (response.success) {
+      props.addToCart(favorite);
       Navigate("/");
     }
   };
@@ -98,7 +96,11 @@ function BookSave() {
               <p className="card-text">{book.volumeInfo.title}</p>
             </div>
             <img
-              src={book.volumeInfo.imageLinks.thumbnail}
+              src={
+                book.volumeInfo.imageLinks
+                  ? book.volumeInfo.imageLinks.thumbnail
+                  : null
+              }
               alt={book.volumeInfo.title}
               style={{ borderRadius: "3%", maxHeight: "18em" }}
             />
@@ -108,7 +110,11 @@ function BookSave() {
                 <input
                   id={book.volumeInfo.title}
                   lang={book.volumeInfo.authors}
-                  name={book.volumeInfo.imageLinks.thumbnail}
+                  name={
+                    book.volumeInfo.imageLinks
+                      ? book.volumeInfo.imageLinks.thumbnail
+                      : null
+                  }
                   title={book.volumeInfo.categories}
                   onChange={handleFavorites}
                   type="checkbox"
@@ -122,5 +128,17 @@ function BookSave() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    books: state.bookReducer.books,
+    userId: state.userReducer.userId,
+  };
+};
 
-export default BookSave;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (favorite) => dispatch(actionCreators.loadCart(favorite)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookSave);
