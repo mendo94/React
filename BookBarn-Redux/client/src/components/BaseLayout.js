@@ -29,9 +29,15 @@ function Menu() {
 function BaseLayout(props) {
   return (
     <div>
-      <Menu />
+      {props.isAuthenticated ? <Menu /> : null}
       {props.children}
     </div>
   );
 }
-export default BaseLayout;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps)(BaseLayout);
