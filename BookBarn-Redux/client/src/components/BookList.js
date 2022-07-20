@@ -34,6 +34,7 @@ function BookList(props) {
   };
 
   const bookItems = books.map((book) => {
+    const filteredGenres = book.genre.filter(book.genre);
     return (
       <div
         className="card text-dark"
@@ -71,9 +72,10 @@ function BookList(props) {
       </div>
     );
   });
+
   return (
     <div>
-      <BookFilter />
+      {/* <BookFilter /> */}
       <ul style={{ display: "flex", flexWrap: "wrap" }}>{bookItems}</ul>
     </div>
   );
