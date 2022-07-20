@@ -14,7 +14,7 @@ function BookSave(props) {
   // const books = props.books;
   // const favorites = props.cart;
   const Navigate = useNavigate();
-  const apiKey = "AIzaSyDWZchMfcTgZ6tz4opBD6_myPdDvStJegg";
+  const apiKey = "Apikey";
 
   const handleFavorites = (e) => {
     setFavorite({
