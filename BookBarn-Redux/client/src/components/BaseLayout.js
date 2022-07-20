@@ -6,17 +6,16 @@ function Menu() {
   const newLocal = "background-color: #e3f2fd;";
   return (
     <div>
-      <nav
-        className="navbar navbar-light"
-        style={{ backgroundColor: "#e3f2fd" }}
-      >
+      <nav className="navbar navbar-light" style={{ backgroundColor: "#333" }}>
         <div>
-          <NavLink className="text-dark" to="/">
+          <NavLink className="text-light nav-link" to="/">
             Home
           </NavLink>
         </div>
         <div>
-          <NavLink to="/add-book">Add Book</NavLink>
+          <NavLink className="text-light nav-link" to="/add-book">
+            Add Book
+          </NavLink>
         </div>
         <div>
           <BookCart />
@@ -36,7 +35,7 @@ function BaseLayout(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.isAuthenticated,
+    isAuthenticated: state.userReducer.isAuthenticated,
   };
 };
 

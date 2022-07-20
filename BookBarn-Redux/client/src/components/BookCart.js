@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function BookCart(props) {
   return (
     <div>
-      <h1>
-        <i className="fa-solid fa-books"></i>
-      </h1>
-      <h1>{props.bookCart}</h1>
+      <FontAwesomeIcon icon={faCartArrowDown} /> ({props.bookCart})
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    bookCart: state.books.length,
+    bookCart: state.bookReducer.books.length,
   };
 };
 
