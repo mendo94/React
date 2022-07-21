@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import BookFilter from "./BookFilter";
+// import BookFilter from "./BookFilter";
 import * as actionCreators from "../store/creators/actionCreators";
 import { connect } from "react-redux";
 import "./BookCart.css";
@@ -70,11 +70,6 @@ function BookList(props) {
         </button>
       </div>
     );
-  });
-
-  const bookFilterItems = books.map((book) => {
-    const filteredGenres = book.genre.filter(book.genre);
-    return console.log(filteredGenres);
   });
 
   return (

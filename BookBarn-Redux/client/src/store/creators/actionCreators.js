@@ -20,3 +20,19 @@ export const loadCart = (cart) => {
     payload: cart,
   };
 };
+
+export const getAllBooks = async (userId) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/${userId}`)
+      .then((response) => response.json())
+      .then((result) => {
+        dispatch({ type: actionTypes.FETCH_BOOKS, payload: result });
+      });
+  };
+};
+export const populateBooks = (books) => {
+  return {
+    type: actionTypes.FETCH_BOOKS,
+    payload: books,
+  };
+};
