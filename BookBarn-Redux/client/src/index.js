@@ -11,19 +11,26 @@ import BaseLayout from "./components/BaseLayout";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import bookReducer from "./store/reducer/bookReducer";
 import cartReducer from "./store/reducer/cartReducer";
 import userReducer from "./store/reducer/userReducer";
+import thunk from "redux-thunk"; //1
 
 const rootReducer = combineReducers({
   bookReducer: bookReducer,
   userReducer: userReducer,
   cartReducer: cartReducer,
 });
-const store = createStore(rootReducer, composeWithDevTools());
+
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

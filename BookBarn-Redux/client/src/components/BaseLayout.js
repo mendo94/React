@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import BookCart from "./BookCart";
 import { connect } from "react-redux";
 
-function Menu() {
+function Menu(props) {
   const newLocal = "background-color: #e3f2fd;";
   return (
     <div>
@@ -15,6 +15,11 @@ function Menu() {
         <div>
           <NavLink className="text-light nav-link" to="/add-book">
             Add Book
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className="text-light nav-link" to="/login">
+            Logout
           </NavLink>
         </div>
         <div>
