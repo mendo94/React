@@ -27,11 +27,16 @@ function SignIn(props) {
       .then((response) => response.json())
       .then((result) => {
         if (result.success) {
-          // localStorage.setItem("userId", result.userId);
-          const userId = result.userId;
-          props.onLoadUser(userId);
-          console.log(userId);
-          Navigate(`/`);
+          const token = result.token;
+          localStorage.setItem("jsonwebtoken", token);
+          console.log(result.username);
+          localStorage.setItem("username", result.username);
+
+          // localStorage.setItem("userId", result.id);
+          // const userId = result.userId;
+          // props.onLoadUser(userId);
+          // console.log(userId);
+          // Navigate(`/`);
         }
       });
   };

@@ -16,8 +16,6 @@ function authenticate(req, res, next) {
           },
         }).then((user) => {
           if (user) {
-            // user is authenticated
-            // continue with the original request
             next();
           } else {
             res.json({ success: false, message: "Unable to authenticate!" });

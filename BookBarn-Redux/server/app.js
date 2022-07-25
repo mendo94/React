@@ -58,7 +58,6 @@ app.post("/login", (req, res) => {
           success: true,
           token: token,
           username: user.username,
-          userId: user.userId,
         });
       } else {
         res.json({ success: false, message: "Invalid credentials." });
@@ -87,15 +86,15 @@ app.post("/", async (req, res) => {
   res.json({ success: true });
 });
 
-app.get("/:userId", async (req, res) => {
-  const userId = req.params.userId;
-  console.log(userId);
-  const books = await models.Book.findAll({
-    where: {
-      userId: userId,
-    },
-  });
-  res.json(books);
+app.get("/test", (req, res) => {
+  // const { username } = req.params;
+
+  // const books = models.Book.findAll({
+  //   where: {
+  //     username: username,
+  //   },
+  // });
+  res.json({ hello: "hello" });
 });
 
 app.delete("/:bookId", async (req, res) => {
