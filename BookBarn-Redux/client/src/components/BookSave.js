@@ -105,7 +105,13 @@ function BookSave(props) {
               style={{ borderRadius: "3%", maxHeight: "18em" }}
             />
             <div className="card-body">
-              <a href={book.volumeInfo.previewLink}>Read Preview</a>
+              <a
+                href={book.volumeInfo.previewLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read Preview
+              </a>
               <div>
                 <input
                   id={book.volumeInfo.title}
@@ -128,6 +134,7 @@ function BookSave(props) {
     </div>
   );
 }
+
 const mapStateToProps = (state) => {
   return {
     books: state.bookReducer.books,

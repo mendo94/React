@@ -2,10 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { Op } = require("sequelize");
-const models = require("./models");
-const bcrypt = require("bcryptjs");
-
 const PORT = process.env.PORT || 8080;
+const models = require("./models");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const env = process.env.NODE_ENV || "development";
+const config = require(__dirname + "/config/config.js")[env];
+const authenticate = require("./authenticateMiddleware");
+const bcrypt = require("bcryptjs");
 const SALT_ROUNDS = 10;
 
 app.use(cors());
@@ -35,17 +39,30 @@ app.get("/registration", async (req, res) => {
   res.json(users);
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  const user = await models.User.findOne({
+  const user = models.User.findOne({
     where: {
       username: username,
     },
   });
-  if (user != null) {
+  if (user) {
     bcrypt.compare(password, user.password, (result) => {
-      res.json({ success: true, userId: user.id });
+      if (result) {
+        const token = jwt.sign(
+          { username: user.username },
+          process.env.JWT_SECRET_KEY
+        );
+        res.json({
+          success: true,
+          token: token,
+          username: user.username,
+          userId: user.userId,
+        });
+      } else {
+        res.json({ success: false, message: "Invalid credentials." });
+      }
     });
   }
 });
