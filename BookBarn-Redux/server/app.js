@@ -39,29 +39,30 @@ app.get("/registration", async (req, res) => {
   res.json(users);
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const user = models.User.findOne({
+  const user = await models.User.findOne({
     where: {
       username: username,
     },
   });
   if (user) {
-    bcrypt.compare(password, user.password, (result) => {
-      if (result) {
-        const token = jwt.sign(
-          { username: user.username },
-          process.env.JWT_SECRET_KEY
-        );
-        res.json({
-          success: true,
-          token: token,
-          username: user.username,
-        });
-      } else {
-        res.json({ success: false, message: "Invalid credentials." });
-      }
+    bcrypt.compare(password, user.password, (err, result) => {
+      // if(result) {
+      const token = jwt.sign(
+        { userId: user.id, username: user.username },
+        process.env.JWT_SECRET_KEY
+      );
+      res.json({
+        success: true,
+        userId: user.id,
+        username: user.username,
+        token: token,
+      });
+      //     } else {
+      //       res.json({ success: false, message: "Invalid credentials." });
+      //     }
     });
   }
 });
@@ -86,15 +87,17 @@ app.post("/", async (req, res) => {
   res.json({ success: true });
 });
 
-app.get("/test", (req, res) => {
-  // const { username } = req.params;
+app.get("/:userId", authenticate, async (req, res) => {
+  const { username } = req.params;
+  const userId = req.params.userId;
+  console.log(userId);
 
-  // const books = models.Book.findAll({
-  //   where: {
-  //     username: username,
-  //   },
-  // });
-  res.json({ hello: "hello" });
+  const books = await models.Book.findAll({
+    where: {
+      userId: userId,
+    },
+  });
+  res.json(books);
 });
 
 app.delete("/:bookId", async (req, res) => {

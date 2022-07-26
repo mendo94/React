@@ -27,16 +27,15 @@ function SignIn(props) {
       .then((response) => response.json())
       .then((result) => {
         if (result.success) {
+          console.log(result.userId);
           const token = result.token;
           localStorage.setItem("jsonwebtoken", token);
-          console.log(result.username);
-          localStorage.setItem("username", result.username);
-
-          // localStorage.setItem("userId", result.id);
-          // const userId = result.userId;
-          // props.onLoadUser(userId);
-          // console.log(userId);
-          // Navigate(`/`);
+          console.log(user.username);
+          localStorage.setItem("userId", result.userId);
+          const userId = user.username;
+          props.onLoadUser(userId);
+          props.onLogin(token);
+          Navigate(`/`);
         }
       });
   };
@@ -63,6 +62,7 @@ function SignIn(props) {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoadUser: (userId) => dispatch(actionCreators.loadUser(userId)),
+    onLogin: (token) => dispatch(actionCreators.loadAuth(token)),
   };
 };
 

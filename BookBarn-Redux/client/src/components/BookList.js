@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 // import BookFilter from "./BookFilter";
 import * as actionCreators from "../store/creators/actionCreators";
 import { connect } from "react-redux";
+import Logout from "./Logout";
 import "./BookCart.css";
 
 function BookList(props) {
@@ -12,13 +13,44 @@ function BookList(props) {
   useEffect(() => {
     getAllBooks();
   }, []);
+  // const getAllBooks =  () => {
+  //   const token = localStorage.getItem("jsonwebtoken");
+  //   const username = localStorage.getItem("username");
+  //   if (token && username) {
+  //     fetch(`http://localhost:8080/${username}`), {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   }).then(response => response.json())
+  //   .then(result => {
+  //     console.log(result);
+  //   })
 
-  const getAllBooks = async () => {
-    const response = await fetch(`http://localhost:8080/${userId}`);
+  //   // const books = await response.json();
+  //   // console.log(books);
+  //   // props.onBooksLoaded(books);
+  // }}
+  const getAllBooks = () => {
+    const token = localStorage.getItem("jsonwebtoken");
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
+    if (token && userId) {
+      fetch(`http://localhost:8080/${userId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result) {
+            props.onBooksLoaded(result);
+          }
+        });
 
-    const books = await response.json();
-    console.log(books);
-    props.onBooksLoaded(books);
+      props.onBooksLoaded(books);
+    }
   };
 
   const handleBookDelete = (bookId) => {
@@ -83,7 +115,7 @@ function BookList(props) {
 const mapStateToProps = (state) => {
   return {
     books: state.bookReducer.books,
-    userId: state.userReducer.userId,
+    username: state.userReducer.username,
   };
 };
 
