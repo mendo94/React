@@ -8,10 +8,6 @@ import React from "react";
 function Logout(props) {
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     handleLogout();
-  //   }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("jsonwebtoken");
     localStorage.removeItem("username");
