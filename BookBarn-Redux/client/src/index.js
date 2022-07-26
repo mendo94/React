@@ -18,6 +18,7 @@ import bookReducer from "./store/reducer/bookReducer";
 import cartReducer from "./store/reducer/cartReducer";
 import userReducer from "./store/reducer/userReducer";
 import thunk from "redux-thunk"; //1
+import * as actionCreators from "./store/creators/actionCreators";
 
 const rootReducer = combineReducers({
   bookReducer: bookReducer,
@@ -25,12 +26,13 @@ const rootReducer = combineReducers({
   cartReducer: cartReducer,
 });
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+const token = localStorage.getItem("jsonwebtoken");
+store.dispatch(actionCreators.loadAuth(token));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -48,22 +48,27 @@ app.post("/login", async (req, res) => {
     },
   });
   if (user) {
+    console.log(password);
+    console.log(user.password);
     bcrypt.compare(password, user.password, (err, result) => {
-      // if(result) {
-      const token = jwt.sign(
-        { userId: user.id, username: user.username },
-        process.env.JWT_SECRET_KEY
-      );
-      res.json({
-        success: true,
-        userId: user.id,
-        username: user.username,
-        token: token,
-      });
-      //     } else {
-      //       res.json({ success: false, message: "Invalid credentials." });
-      //     }
+      console.log(result);
+      if (result != null) {
+        const token = jwt.sign(
+          { userId: user.id, username: user.username },
+          process.env.JWT_SECRET_KEY
+        );
+        res.json({
+          success: true,
+          userId: user.id,
+          username: user.username,
+          token: token,
+        });
+      } else {
+        res.json({ success: false, message: "Invalid credentials." });
+      }
     });
+  } else {
+    res.json({ success: false, message: "User is not authenticated." });
   }
 });
 
