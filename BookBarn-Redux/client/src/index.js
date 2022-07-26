@@ -58,7 +58,6 @@ root.render(
                 </ProtectedRoute>
               }
             />
-
             <Route path="/registration" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/secret" element={<App />} />
