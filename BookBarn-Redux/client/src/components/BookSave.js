@@ -9,7 +9,7 @@ function BookSave(props) {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
   const [favorite, setFavorite] = useState([]);
-  const userId = props.userId;
+  const userId = localStorage.getItem("userId");
   // const userId = localStorage.getItem("userId");
   // const books = props.books;
   // const favorites = props.cart;

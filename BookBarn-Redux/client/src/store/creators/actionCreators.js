@@ -21,6 +21,13 @@ export const loadCart = (cart) => {
   };
 };
 
+export const loadAuth = (token) => {
+  return {
+    type: actionTypes.LOAD_AUTH,
+    payload: token,
+  };
+};
+
 export const getAllBooks = async (userId) => {
   return (dispatch) => {
     fetch(`http://localhost:8080/${userId}`)

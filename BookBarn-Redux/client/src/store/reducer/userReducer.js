@@ -10,8 +10,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_USER:
       return {
         ...state,
-        isAuthenticated: true,
+        isAuthenticated: action.payload != null,
         userId: action.payload,
+      };
+    case actionTypes.LOAD_AUTH:
+      return {
+        ...state,
+        isAuthenticated: action.payload != null,
       };
     default:
       return state;

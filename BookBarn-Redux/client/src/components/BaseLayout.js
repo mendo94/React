@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import BookCart from "./BookCart";
 import { connect } from "react-redux";
+import Logout from "./Logout";
 
 function Menu(props) {
   const newLocal = "background-color: #e3f2fd;";
@@ -19,7 +20,7 @@ function Menu(props) {
         </div>
         <div>
           <NavLink className="text-light nav-link" to="/login">
-            Logout
+            <Logout />
           </NavLink>
         </div>
         <div>
