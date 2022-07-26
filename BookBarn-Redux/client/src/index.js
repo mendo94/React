@@ -19,6 +19,7 @@ import cartReducer from "./store/reducer/cartReducer";
 import userReducer from "./store/reducer/userReducer";
 import thunk from "redux-thunk"; //1
 import * as actionCreators from "./store/creators/actionCreators";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const rootReducer = combineReducers({
   bookReducer: bookReducer,
@@ -41,8 +42,23 @@ root.render(
       <BrowserRouter>
         <BaseLayout>
           <Routes>
-            <Route path="/" element={<BookList />} />
-            <Route path="/add-book" element={<BookSave />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <BookList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/add-book"
+              element={
+                <ProtectedRoute>
+                  <BookSave />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path="/registration" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/secret" element={<App />} />
